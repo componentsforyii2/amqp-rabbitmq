@@ -1,0 +1,20 @@
+{
+    "name": "componentsforyii2/amqp-rabbitmq",
+    "description": "rabbitmq+yii2组件",
+    "type": "library",
+    "require": {
+        "php-amqplib/php-amqplib": "*"
+    },
+    "authors": [
+        {
+            "name": "Yuanshuai",
+            "email": "yuanshuai@mybns.cn"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload" : {
+        "psr-4" : {
+            "componentsforyii2\\amqpRabbitmq\\" : "src"
+        }
+    },
+}
