@@ -26,6 +26,8 @@ class WorkerController extends Controller
     protected $callBackName = "doJob";
     protected $pidfile;
     protected $jobClass = "componentsforyii2\amqpRabbitmq\Job";
+    protected $phpBinPath = "/usr/local/php/bin/php";
+    
     /**
      * @var Job $job
      */
@@ -37,7 +39,6 @@ class WorkerController extends Controller
     const STATUS = "status";
     const STOPALL = "stopall";
     const WORKERS = "workers";
-    const BIN_PATH = "/usr/local/php/bin/php";
     public function init()
     {
         $this->amqp = static::setAmqp();
@@ -83,7 +84,7 @@ class WorkerController extends Controller
     public function start(){
         //获取php目录
         $basePath = \Yii::$app->basePath;
-        $cmd = self::BIN_PATH." {$basePath}/index.php {$this->id}/start >> /dev/null 2>&1 & echo $! > {$this->pidfile}";
+        $cmd = $this->phpBinPath." {$basePath}/index.php {$this->id}/start >> /dev/null 2>&1 & echo $! > {$this->pidfile}";
         exec($cmd,$out);
         $pid = file_get_contents($this->pidfile);
         return $pid;
